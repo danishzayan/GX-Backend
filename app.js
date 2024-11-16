@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes.js';
+import assignmentRoutes from './routes/assignmentRoutes.js';
+
 
 dotenv.config();
 
@@ -28,5 +30,6 @@ async function main() {
 
 // All Routes
 app.use('/api/users', userRoutes);
+app.use('/api/assignments', assignmentRoutes);
 
 export default app;

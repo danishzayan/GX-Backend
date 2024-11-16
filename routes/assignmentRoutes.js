@@ -21,7 +21,7 @@ router.post('/upload', verifyToken, async (req, res) => {
     const newAssignment = new Assignment({
       userId,
       task,
-      admin,
+      admin: adminUser._id,
       createdAt: new Date(),
     });
 
