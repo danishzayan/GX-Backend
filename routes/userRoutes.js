@@ -42,13 +42,13 @@ router.post('/login', validateUser, async (req, res) => {
   try {
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).json({ message: 'you have entered wrong username' });
     }
 
     // match the user password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).json({ message: 'you have entered wrong password' });
     }
 
     // Generate a JWT token
