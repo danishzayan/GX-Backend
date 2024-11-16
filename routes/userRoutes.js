@@ -24,9 +24,11 @@ router.post('/register', async (req, res) => {
       password: hashedPassword,
       role,
     });
-
     await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
+
+    const message = role === 'admin' ? 'Admin registered successfully' : 'User registered successfully';
+
+    res.status(201).json({ message });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
