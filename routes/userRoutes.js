@@ -2,11 +2,12 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
+import { validateUser } from '../middleware/validationMiddleware.js';
 
 const router = express.Router();
 
 // route for register a new user
-router.post('/register', async (req, res) => {
+router.post('/register', validateUser, async (req, res) => {
   const { username, password, role } = req.body;
 
   try {
@@ -35,7 +36,7 @@ router.post('/register', async (req, res) => {
 });
 
 // route for user login
-router.post('/login', async (req, res) => {
+router.post('/login', validateUser, async (req, res) => {
   const { username, password } = req.body;
 
   try {
