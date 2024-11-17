@@ -1,67 +1,10 @@
 import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import User from '../models/userModel.js';
+import { registerUser, loginUser } from '../controllers/userController.js';
 import { validateUser } from '../middleware/validationMiddleware.js';
 
 const router = express.Router();
 
-// route for register a new user
-router.post('/register', validateUser, async (req, res) => {
-  const { username, password, role } = req.body;
-
-  try {
-    // Check if the user already exists
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user
-    const newUser = new User({
-      username,
-      password: hashedPassword,
-      role,
-    });
-    await newUser.save();
-
-    const message = role === 'admin' ? 'Admin registered successfully' : 'User registered successfully';
-
-    res.status(201).json({ message });
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
-});
-
-// route for user login
-router.post('/login', validateUser, async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(400).json({ message: 'you have entered wrong username' });
-    }
-
-    // match the user password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: 'you have entered wrong password' });
-    }
-
-    // Generate a JWT token
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    res.status(200).json({ message: 'Login successful', token });
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
-});
+router.post('/register', validateUser, registerUser);
+router.post('/login', validateUser, loginUser);
 
 export default router;
