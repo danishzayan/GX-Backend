@@ -9,7 +9,7 @@ Welcome to the project ! This guide provides instructions on how to set up and r
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/danishzayan/GX-Backend.git
    cd GX-Backend
    ```
 
