@@ -1,6 +1,7 @@
 import Assignment from '../models/assignmentModel.js';
 import User from '../models/userModel.js';
 
+// Function to upload a new assignment
 export const uploadAssignment = async (req, res) => {
   const { task, admin } = req.body;
   const userId = req.user.id;
@@ -25,6 +26,7 @@ export const uploadAssignment = async (req, res) => {
   }
 };
 
+// Function to view all assignments for an admin
 export const viewAssignments = async (req, res) => {
   try {
     const assignments = await Assignment.find({ admin: req.user.id });
@@ -34,6 +36,7 @@ export const viewAssignments = async (req, res) => {
   }
 };
 
+// Function to accept assignment by admin
 export const acceptAssignment = async (req, res) => {
   const assignmentId = req.params.id;
 
@@ -61,6 +64,7 @@ export const acceptAssignment = async (req, res) => {
   }
 };
 
+// Function to reject assignment by admin
 export const rejectAssignment = async (req, res) => {
   const assignmentId = req.params.id;
 

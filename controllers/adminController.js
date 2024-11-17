@@ -1,5 +1,6 @@
 import User from '../models/userModel.js';
 
+// Function to get all admin users
 export const getAllAdmins = async (req, res) => {
   try {
     const admins = await User.find({ role: 'admin' })

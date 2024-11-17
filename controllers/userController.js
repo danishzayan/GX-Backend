@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
 
+// Function to register a new user or admin
 export const registerUser = async (req, res) => {
   const { username, password, role } = req.body;
 
@@ -28,6 +29,7 @@ export const registerUser = async (req, res) => {
   }
 };
 
+// Function to login a user or admin
 export const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
