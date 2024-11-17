@@ -2,7 +2,7 @@
 
 Welcome to the project ! This guide provides instructions on how to set up and run the project locally.
 
-**Checkout for Endpoint**: [API Documentation](./API-DOCUMENTATION.MD)
+**Checkout for Endpoint**: [API Documentation](./API-Documentation.md)
 
 ## Project Setup
 
