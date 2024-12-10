@@ -2,14 +2,14 @@
 
 Welcome to the project ! This guide provides instructions on how to set up and run the project locally.
 
-**Checkout for Endpoint**: [API Documentation](./API-DOCUMENTATION.MD)
+**Checkout for Endpoint**: [API Documentation](./API-Documentation.md)
 
 ## Project Setup
 
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/danishzayan/GX-Backend.git
    cd GX-Backend
    ```
 
